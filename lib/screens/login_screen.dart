@@ -1,5 +1,8 @@
+import 'package:bank_application/screens/home_nav_screen.dart';
 import 'package:bank_application/screens/home_screen.dart';
 import 'package:bank_application/screens/open_account.dart';
+import 'package:bank_application/screens/prelogin_screen.dart';
+import 'package:bank_application/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:rolling_switch/rolling_switch.dart';
 
@@ -70,8 +73,8 @@ class _LoginScreenState extends State<LoginScreen> {
         padding: EdgeInsets.fromLTRB(20, 15, 20, 15),
         minWidth: MediaQuery.of(context).size.width,
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => HomeNavigation()));
         },
         child: Text(
           "Sign Up",
@@ -93,8 +96,8 @@ class _LoginScreenState extends State<LoginScreen> {
       borderRadius: BorderRadius.circular(10),
       child: MaterialButton(
         onPressed: () {
-          Navigator.push(
-              context, MaterialPageRoute(builder: (context) => HomeScreen()));
+          Navigator.push(context,
+              MaterialPageRoute(builder: (context) => HomeNavigation()));
         },
         child: Text(
           "Use Touch ID",
@@ -116,6 +119,7 @@ class _LoginScreenState extends State<LoginScreen> {
       child: Scaffold(
         backgroundColor: Colors.transparent,
         body: SingleChildScrollView(
+          physics: BouncingScrollPhysics(),
           child: Container(
             child: Padding(
               padding: const EdgeInsets.all(36.0),
@@ -135,7 +139,11 @@ class _LoginScreenState extends State<LoginScreen> {
                               color: Colors.white,
                             ),
                             onPressed: () {
-                              Navigator.of(context).pop();
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: ((context) =>
+                                          PreLoginScreen())));
                             },
                           ),
                         ],

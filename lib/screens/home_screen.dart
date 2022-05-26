@@ -1,5 +1,9 @@
 import 'package:bank_application/models/appbanner.dart';
 import 'package:bank_application/models/banner_item.dart';
+import 'package:bank_application/screens/beneficiary_screen.dart';
+import 'package:bank_application/screens/contact_screen.dart';
+import 'package:bank_application/screens/login_screen.dart';
+import 'package:bank_application/screens/profile_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -76,7 +80,10 @@ class _HomeScreenState extends State<HomeScreen> {
       borderRadius: BorderRadius.circular(10),
       color: Color.fromARGB(255, 236, 236, 238),
       child: MaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => Profile()));
+        },
         child: Column(
           children: <Widget>[
             Icon(Icons.settings),
@@ -101,66 +108,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
     return Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
-          elevation: 0,
-          automaticallyImplyLeading: false,
-          backgroundColor: Color.fromARGB(255, 11, 52, 85),
-          centerTitle: true,
-          title: Icon(
-            Icons.link,
-            size: 50,
-            color: Color.fromARGB(255, 187, 170, 24),
-          ),
-          actions: <Widget>[
-            IconButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              icon: Icon(Icons.power_settings_new),
-            )
-          ],
-        ),
-        bottomNavigationBar: BottomAppBar(
-          color: Color.fromARGB(255, 236, 236, 238),
-          shape: CircularNotchedRectangle(),
-          notchMargin: 0,
-          child: Row(
-            children: <Widget>[
-              SizedBox(
-                width: 40,
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.home),
-                iconSize: 30,
-              ),
-              SizedBox(
-                width: 40,
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.people),
-                iconSize: 30,
-              ),
-              SizedBox(
-                width: 40,
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.headset_mic),
-                iconSize: 30,
-              ),
-              SizedBox(
-                width: 40,
-              ),
-              IconButton(
-                onPressed: () {},
-                icon: Icon(Icons.settings),
-                iconSize: 30,
-              ),
-            ],
-          ),
-        ),
         body: Container(
           color: Color.fromARGB(255, 217, 216, 216),
           alignment: Alignment.center,
@@ -200,7 +147,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     var banner = appBannerList[index];
                     var _scale = _selectedIndex == index ? 1.0 : 0.8;
                     return TweenAnimationBuilder(
-                      duration: const Duration(milliseconds: 350),
+                      duration: const Duration(milliseconds: 900),
                       curve: Curves.easeIn,
                       tween: Tween(begin: _scale, end: _scale),
                       child: BannerItem(),
@@ -254,6 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   color: Colors.white,
                 ),
                 child: SingleChildScrollView(
+                  physics: BouncingScrollPhysics(),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,
@@ -262,7 +210,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 25,
                       ),
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Column(
                             children: <Widget>[
@@ -279,9 +227,6 @@ class _HomeScreenState extends State<HomeScreen> {
                               )
                             ],
                           ),
-                          SizedBox(
-                            width: 30,
-                          ),
                           Column(
                             children: <Widget>[
                               Icon(
@@ -290,16 +235,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color.fromARGB(255, 187, 170, 24),
                               ),
                               Text(
-                                "Internal Transfer",
+                                "Bill Payments",
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color.fromARGB(255, 4, 93, 133)),
                               )
                             ],
                           ),
-                          SizedBox(
-                            width: 30,
-                          ),
                           Column(
                             children: <Widget>[
                               Icon(
@@ -308,7 +250,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color.fromARGB(255, 187, 170, 24),
                               ),
                               Text(
-                                "Internal Transfer",
+                                "Bank Statements",
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color.fromARGB(255, 4, 93, 133)),
@@ -321,7 +263,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 25,
                       ),
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Column(
                             children: <Widget>[
@@ -331,15 +273,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color.fromARGB(255, 187, 170, 24),
                               ),
                               Text(
-                                "Internal Transfer",
+                                "RTGS Transfer",
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color.fromARGB(255, 4, 93, 133)),
                               )
                             ],
-                          ),
-                          SizedBox(
-                            width: 30,
                           ),
                           Column(
                             children: <Widget>[
@@ -349,15 +288,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color.fromARGB(255, 187, 170, 24),
                               ),
                               Text(
-                                "Internal Transfer",
+                                "Airtime & Bundles",
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color.fromARGB(255, 4, 93, 133)),
                               )
                             ],
-                          ),
-                          SizedBox(
-                            width: 30,
                           ),
                           Column(
                             children: <Widget>[
@@ -367,7 +303,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color.fromARGB(255, 187, 170, 24),
                               ),
                               Text(
-                                "Internal Transfer",
+                                "Visa Services",
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color.fromARGB(255, 4, 93, 133)),
@@ -380,7 +316,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         height: 25,
                       ),
                       Row(
-                        crossAxisAlignment: CrossAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         children: <Widget>[
                           Column(
                             children: <Widget>[
@@ -390,15 +326,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color.fromARGB(255, 187, 170, 24),
                               ),
                               Text(
-                                "Internal Transfer",
+                                "ZIPIT",
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color.fromARGB(255, 4, 93, 133)),
                               )
                             ],
-                          ),
-                          SizedBox(
-                            width: 30,
                           ),
                           Column(
                             children: <Widget>[
@@ -408,15 +341,12 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color.fromARGB(255, 187, 170, 24),
                               ),
                               Text(
-                                "Internal Transfer",
+                                "TapCard",
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color.fromARGB(255, 4, 93, 133)),
                               )
                             ],
-                          ),
-                          SizedBox(
-                            width: 30,
                           ),
                           Column(
                             children: <Widget>[
@@ -426,7 +356,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 color: Color.fromARGB(255, 187, 170, 24),
                               ),
                               Text(
-                                "Internal Transfer",
+                                "Loans",
                                 style: TextStyle(
                                     fontSize: 12,
                                     color: Color.fromARGB(255, 4, 93, 133)),
